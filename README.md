@@ -6,4 +6,4 @@ run
 python3 analyze.py
 ```
 
-![time series](image.png)
+![feeding pattern](image.png)
