@@ -52,7 +52,6 @@ for d, color, text in zip([bm, formula], ['g', 'r'],
     day = datetime.timedelta(days=1)
     plt.scatter(dates, times, s=vol, c=color, label=text)
 
-#plt.gca().set_ylabel('Hour')
 plt.ylabel('Hour')
 ax2.set_xlim([min(dates) - day * 2, max(dates) + day])
 hours = [datetime.time(i) for i in range(0, 24, 2)]
