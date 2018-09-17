@@ -19,10 +19,11 @@ df = pd.read_csv(
     keep_default_na=False)
 df.rename(columns={'Volume (oz)': 'Vol'}, inplace=True)
 
-stool = pd.read_csv('stool.csv',
+stool = pd.read_csv(
+    'stool.csv',
     parse_dates=[0],
     index_col=0,
-    )
+)
 
 fig = plt.figure(figsize=(8, 6))
 
@@ -32,9 +33,10 @@ ax1 = plt.subplot(411)
 ax1.grid(True, axis='y', linestyle='--')
 plt.plot(stool.index.date, stool.Count.values, 'o--')
 plt.ylabel('Stools')
-loc = plticker.MultipleLocator(base=3.0) # this locator puts ticks at regular intervals
+loc = plticker.MultipleLocator(
+    base=3.0)  # this locator puts ticks at regular intervals
 ax1.yaxis.set_major_locator(loc)
-plt.ylim([0, max(stool.Count.values)+1])
+plt.ylim([0, max(stool.Count.values) + 1])
 
 # plot daily feeding quantity
 ax2 = plt.subplot(412, sharex=ax1)
@@ -55,10 +57,12 @@ plt.bar(
     bottom=by_date[False].values,
     label='breast milk',
     color='g')
-plt.bar(by_date.index, by_date[False].values, label='formula', color='r')
+plt.bar(
+    by_date.index, by_date[False].values, label='formula', color='r')
 plt.ylabel('Feed (oz)')
 plt.legend(loc='upper left')
-loc = plticker.MultipleLocator(base=5.0) # this locator puts ticks at regular intervals
+loc = plticker.MultipleLocator(
+    base=5.0)  # this locator puts ticks at regular intervals
 ax2.yaxis.set_major_locator(loc)
 
 # plot daily feeding pattern
