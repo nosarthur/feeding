@@ -14,7 +14,7 @@ from matplotlib import gridspec
 
 import utils
 
-# load data
+# ------------- load data ---------------------------------
 data_type = {'BM': bool}
 df1 = pd.read_csv(
     'feed.csv',
@@ -36,9 +36,17 @@ df2.rename(
         'Weight (kg)': 'Weight'
     }, inplace=True)
 
+weight_guide = pd.read_csv(
+    'WHO_weight_guideline_boy_13weeks.txt',
+    index_col=0,
+    delim_whitespace=True,
+)
+
+# ----------- figure setup --------------------------------
 fig = plt.figure(figsize=(8, 7))
 gs = gridspec.GridSpec(nrows=4, ncols=1, height_ratios=[2, 1, 2, 3])
 dates = df2.index.date
+one_day = datetime.timedelta(days=1)
 
 # ----------- plot daily stool count -----------------------
 ax2 = fig.add_subplot(gs[1])
@@ -52,11 +60,35 @@ plt.ylim([0, max(df2.Stool.values) + 1])
 # ----------- plot weight change -----------------------
 ax1 = fig.add_subplot(gs[0], sharex=ax2)
 weight = df2.Weight.dropna()
-plt.plot(weight.index.date, weight.values, 'o--', clip_on=False)
+plt.plot(weight.index.date, weight.values, 'o--', clip_on=False, label='Luke')
 plt.ylabel('Weight (kg)')
 utils.set_y_major(0.25)
 ax1.grid(True, axis='y', linestyle='--')
-plt.ylim([3.25, max(weight.values) + 0.1])
+plt.ylim([3.25, max(weight.values) + 1])
+
+# plot percentile guide
+guide_date = [
+    weight.index.date[0] + 7 * one_day * i for i in weight_guide.index
+]
+plt.plot(
+    guide_date,
+    weight_guide.P75.values,
+    'go:',
+    fillstyle='none',
+    label='75 percentile')
+plt.plot(
+    guide_date,
+    weight_guide.P50.values,
+    'bo:',
+    fillstyle='none',
+    label='50 percentile')
+plt.plot(
+    guide_date,
+    weight_guide.P25.values,
+    'ro:',
+    fillstyle='none',
+    label='25 percentile')
+plt.legend(loc='upper left')
 
 # ----------- plot daily feeding quantity --------------------
 ax3 = fig.add_subplot(gs[2], sharex=ax2)
@@ -111,7 +143,6 @@ plt.tight_layout(
     w_pad=0,
     h_pad=0,
 )
-one_day = datetime.timedelta(days=1)
 plt.xlim([dates[0], dates[-1] + one_day])
 fig.autofmt_xdate()
 plt.savefig('image.png')
