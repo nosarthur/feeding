@@ -6,6 +6,6 @@ To generate the figure below, run
 python3 analyze.py
 ```
 
-![feeding pattern](image.png)
-
 The World Health Organization (WHO) weight guideline can be downloaded [here](http://www.who.int/childgrowth/standards/weight_for_age/en/).
+
+![feeding pattern](image.png)
