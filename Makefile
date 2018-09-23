@@ -1,4 +1,4 @@
-all: analyze.py feed.csv weight_stool.csv utils.py
-	python3 analyze.py && cp image.png ~/Downloads/
+all: src/analyze.py data/feed.csv data/weight_stool.csv src/utils.py
+	python3 src/analyze.py && cp image.png ~/Downloads/
 clean:
-	rm -fr __pycache__
+	rm -fr src/__pycache__

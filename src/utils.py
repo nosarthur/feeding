@@ -1,3 +1,4 @@
+from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.ticker as plticker
 
@@ -24,3 +25,8 @@ def set_y_major(base):
     plt.gca().yaxis.set_major_locator(loc)
 
 
+def fullpath(fname):
+    """
+    return full path of the data file
+    """
+    return Path(__file__).parent.parent / 'data' / fname

@@ -17,7 +17,7 @@ import utils
 # ------------- load data ---------------------------------
 data_type = {'BM': bool}
 df1 = pd.read_csv(
-    'feed.csv',
+    utils.fullpath('feed.csv'),
     dtype=data_type,
     index_col=0,
     parse_dates=[0],
@@ -26,7 +26,7 @@ df1 = pd.read_csv(
 df1.rename(columns={'Volume (oz)': 'Vol'}, inplace=True)
 
 df2 = pd.read_csv(
-    'weight_stool.csv',
+    utils.fullpath('weight_stool.csv'),
     parse_dates=[0],
     index_col=0,
 )
@@ -37,7 +37,7 @@ df2.rename(
     }, inplace=True)
 
 weight_guide = pd.read_csv(
-    'WHO_weight_guideline_boy_13weeks.txt',
+    utils.fullpath('WHO_weight_guideline_boy_13weeks.txt'),
     index_col=0,
     delim_whitespace=True,
 )
