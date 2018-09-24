@@ -6,8 +6,8 @@ import pandas as pd
 import numpy as np
 import datetime
 import matplotlib
-
 matplotlib.use('agg')  # for ChromeOS
+
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 #import matplotlib.dates as md
@@ -15,15 +15,7 @@ from matplotlib import gridspec
 import utils
 
 # ------------- load data ---------------------------------
-data_type = {'BM': bool}
-df1 = pd.read_csv(
-    utils.fullpath('feed.csv'),
-    dtype=data_type,
-    index_col=0,
-    parse_dates=[0],
-    skipinitialspace=True,
-    keep_default_na=False)
-df1.rename(columns={'Volume (oz)': 'Vol'}, inplace=True)
+df1 = utils.load_feedings()
 
 df2 = pd.read_csv(
     utils.fullpath('weight_stool.csv'),
@@ -60,7 +52,7 @@ plt.ylim([0, max(df2.Stool.values) + 1])
 # ----------- plot weight change -----------------------
 ax1 = fig.add_subplot(gs[0], sharex=ax2)
 weight = df2.Weight.dropna()
-plt.plot(weight.index.date, weight.values, 'o--', clip_on=False, label='Luke')
+plt.plot(weight.index.date, weight.values, 'o', clip_on=False, label='Luke')
 plt.ylabel('Weight (kg)')
 utils.set_y_major(0.25)
 ax1.grid(True, axis='y', linestyle='--')

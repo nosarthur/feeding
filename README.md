@@ -3,7 +3,7 @@
 To generate the figure below, run
 
 ```bash
-python3 analyze.py
+python3 src/analyze.py
 ```
 
 The World Health Organization (WHO) weight guideline can be downloaded [here](http://www.who.int/childgrowth/standards/weight_for_age/en/).

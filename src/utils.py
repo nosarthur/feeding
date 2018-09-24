@@ -1,4 +1,7 @@
+import pandas as pd
 from pathlib import Path
+import matplotlib
+matplotlib.use('agg')  # for ChromeOS
 import matplotlib.pyplot as plt
 import matplotlib.ticker as plticker
 
@@ -30,3 +33,18 @@ def fullpath(fname):
     return full path of the data file
     """
     return Path(__file__).parent.parent / 'data' / fname
+
+
+def load_feedings():
+    data_type = {'BM': bool}
+    df = pd.read_csv(
+        fullpath('feed.csv'),
+        dtype=data_type,
+        index_col=0,
+        parse_dates=[0],
+        skipinitialspace=True,
+        keep_default_na=False)
+    df.rename(columns={'Volume (oz)': 'Vol'}, inplace=True)
+    return df
+
+
