@@ -14,7 +14,7 @@ def autolabel(rects1, rects2):
     for r1, r2 in zip(rects1, rects2):
         height = r1.get_height() + r2.get_height()
         ca.text(r1.get_x() + r1.get_width()/2., 1.05*height,
-                '%d' % int(height),
+                '%d' % int(round(height)),
                 ha='center', va='bottom')
 
     # give room for the label
