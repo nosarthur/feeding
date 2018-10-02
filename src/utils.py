@@ -19,7 +19,7 @@ def autolabel(rects1, rects2):
 
     # give room for the label
     ymin, ymax = ca.get_ylim()
-    plt.ylim([ymin, ymax + 8])
+    plt.ylim([ymin, ymax + 10])
 
 
 def set_y_major(base):
