@@ -54,7 +54,7 @@ ax1 = fig.add_subplot(gs[0], sharex=ax2)
 weight = df2.Weight.dropna()
 plt.plot(weight.index.date, weight.values, 'o', clip_on=False, label='Luke')
 plt.ylabel('Weight (kg)')
-utils.set_y_major(0.25)
+utils.set_y_major(0.5)
 ax1.grid(True, axis='y', linestyle='--')
 plt.ylim([3.25, max(weight.values) + 1])
 
