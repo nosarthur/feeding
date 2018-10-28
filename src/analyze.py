@@ -10,7 +10,7 @@ matplotlib.use('agg')  # for ChromeOS
 
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-#import matplotlib.dates as md
+# import matplotlib.dates as md
 
 import utils
 
@@ -35,7 +35,7 @@ weight_guide = pd.read_csv(
 )
 
 # ----------- figure setup --------------------------------
-fig = plt.figure(figsize=(10, 7))
+fig = plt.figure(figsize=(12, 7))
 gs = gridspec.GridSpec(nrows=4, ncols=1, height_ratios=[2, 1, 2, 3])
 dates = df2.index.date
 one_day = datetime.timedelta(days=1)
@@ -46,7 +46,7 @@ ax2.grid(True, axis='y', linestyle='--')
 plt.plot(dates, df2.Stool.values, 'o-', clip_on=False)
 plt.ylabel('Stools')
 utils.set_y_major(3)
-#ax2.set_xticks(df2.index.date, minor=True)
+# ax2.set_xticks(df2.index.date, minor=True)
 plt.ylim([0, max(df2.Stool.values) + 1])
 
 # ----------- plot weight change -----------------------
@@ -109,8 +109,8 @@ plt.legend(loc='upper left')
 utils.set_y_major(10)
 
 # ------------ plot daily feeding pattern -----------------
-#ax4 = plt.subplot2grid((6, 1), (3, 0), rowspan=3, sharex=ax2)
-#ax4 = plt.subplot(212, sharex=ax2)
+# ax4 = plt.subplot2grid((6, 1), (3, 0), rowspan=3, sharex=ax2)
+# ax4 = plt.subplot(212, sharex=ax2)
 ax4 = fig.add_subplot(gs[3], sharex=ax2)
 bm = df1.loc[df1.BM]
 formula = df1.loc[df1.BM == False]
