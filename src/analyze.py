@@ -35,7 +35,7 @@ weight_guide = pd.read_csv(
 )
 
 # ----------- figure setup --------------------------------
-fig = plt.figure(figsize=(12, 7))
+fig = plt.figure(figsize=(13, 7))
 gs = gridspec.GridSpec(nrows=4, ncols=1, height_ratios=[2, 1, 2, 3])
 dates = df2.index.date
 one_day = datetime.timedelta(days=1)
